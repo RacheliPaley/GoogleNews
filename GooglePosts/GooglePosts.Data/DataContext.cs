@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Caching;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace GooglePosts.Data
@@ -18,7 +19,7 @@ namespace GooglePosts.Data
             if (MemoryCache.Default["Posts"] == null)
             {
                 // If not, load data from XML and cache it
-                LoadAndCacheData();
+                Task.Run(() => LoadAndCacheData()).Wait();
             }
 
             // Retrieve posts from cache
@@ -32,14 +33,14 @@ namespace GooglePosts.Data
 
             // Parse XML and create a list of Post objects
             List<Post> posts = xmlDoc.Descendants("item").Select(item =>
-                  new Post
-                  {
-                      // Extract data from XML elements
-                      Title = item.Element("title")?.Value,
-                      Description = item.Element("description")?.Value,
-                      Link = item.Element("link")?.Value,
-                      Source = item.Element("source")?.Value
-                  }).ToList();
+                new Post
+                {
+                    // Extract data from XML elements
+                    Title = item.Element("title")?.Value,
+                    Description = item.Element("description")?.Value,
+                    Link = item.Element("link")?.Value,
+                    Source = item.Element("source")?.Value
+                }).ToList();
 
             // Cache the posts with an expiration policy
             MemoryCache.Default.Add("Posts", posts, new CacheItemPolicy { AbsoluteExpiration = DateTime.Now.AddHours(1) });

@@ -8,25 +8,25 @@ namespace GooglePosts.API.Controllers
     [ApiController]
     public class PostController : ControllerBase
     {
-        private readonly IPostService _postService;
+        private readonly IPostService<Post> _postService;
 
-        public PostController(IPostService postsService)
+        public PostController(IPostService<Post> postsService)
         {
             _postService = postsService;
         }
        
         [HttpGet("/posts")]
-        public IEnumerable<Post> Get()
+        public async Task<IEnumerable<Post>> Get()
         {
-            return _postService.GetAll();
+            return await _postService.GetAll();
         }
 
         [HttpGet("/titles")]
-        public Dictionary<int, string> GetTitles()
+        public  async Task<Dictionary<int, string>> GetTitles()
         {
             var titlesDictionary = new Dictionary<int, string>();
 
-            var posts = _postService.GetAll();
+            var posts = await _postService.GetAll();
 
             foreach (var post in posts)
             {
@@ -39,9 +39,9 @@ namespace GooglePosts.API.Controllers
      
 
         [HttpGet("/post/{id}")]
-        public Post Get(int id)
+        public async Task<Post> Get(int id)
         {
-            return _postService.GetPostById(id);    
+            return await _postService.GetPostById(id);    
         }
 
 

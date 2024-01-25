@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace GooglePost.Core.Repositories
 {
-    public interface IPostRepository
+    public interface IPostRepository<T>
     {
-        List<Post> GetAll();
-        Post GetPostById(int id);   
+        Task<List<T>>  GetAll();
+       Task<T> GetPostById(int id);   
     }
 }

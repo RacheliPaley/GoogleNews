@@ -1,32 +1,28 @@
 ﻿using GooglePost.Core.Entities;
 using GooglePost.Core.Repositories;
 using GooglePost.Core.Services;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace GooglePosts.Service
 {
-    public class PostService : IPostService
+    public class PostService : IPostService<Post>
     {
-        private readonly IPostRepository _postRepository
-            ;
-        public PostService(IPostRepository postRepository)
+        private readonly IPostRepository<Post> _postRepository;
+
+        public PostService(IPostRepository<Post> postRepository)
         {
             _postRepository = postRepository;
         }
 
-
-        public List<Post> GetAll()
+        public async Task<List<Post>> GetAll()
         {
-            return _postRepository.GetAll();
+            return await _postRepository.GetAll();
         }
 
-        public Post GetPostById(int id)
+        public async Task<Post> GetPostById(int id)
         {
-            return _postRepository.GetPostById(id);
+            return await _postRepository.GetPostById(id);
         }
     }
 }

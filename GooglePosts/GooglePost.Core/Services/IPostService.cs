@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace GooglePost.Core.Services
 {
-    public interface IPostService
+    public interface IPostService<T>
     {
-        List<Post> GetAll();
+        Task<List<T>>  GetAll();
 
-        Post GetPostById(int id);
+       Task<T> GetPostById(int id);
     }
 }
