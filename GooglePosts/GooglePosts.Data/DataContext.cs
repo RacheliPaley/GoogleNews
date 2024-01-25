@@ -29,7 +29,7 @@ namespace GooglePosts.Data
         private void LoadAndCacheData()
         {
             // Load XML document from file
-            XDocument xmlDoc = XDocument.Load("rss.xml");
+            XDocument xmlDoc = XDocument.Load(": http://news.google.com/news?pz=1&cf=all&ned=en_il&hl=en&output=rss");
 
             // Parse XML and create a list of Post objects
             List<Post> posts = xmlDoc.Descendants("item").Select(item =>
