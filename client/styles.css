@@ -1,0 +1,39 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    color: #333;
+}
+
+#newsContainer {
+    display: flex;
+}
+
+#postList {
+    flex: 1;
+    padding: 10px;
+    text-decoration: underline;
+    color: '#007bff'
+}
+
+#selectedPost {
+    flex: 2;
+    padding: 10px;
+}
+
+.postLink {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.rm-link {
+    display: block;
+    text-align: right;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+}

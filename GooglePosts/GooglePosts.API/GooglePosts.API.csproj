@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GooglePost.Core\GooglePost.Core.csproj" />
+    <ProjectReference Include="..\GooglePosts.Data\GooglePosts.Data.csproj" />
+    <ProjectReference Include="..\GooglePosts.Service\GooglePosts.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="rss.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
